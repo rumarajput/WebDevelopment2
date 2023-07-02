@@ -1,0 +1,37 @@
+<script>
+// Get the form and input elements
+const form = document.getElementById('addForm');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+
+// Add event listener to the form submit event
+form.addEventListener('submit', addUser);
+
+// Function to handle form submission
+function addUser(e) {
+  e.preventDefault(); // Prevent form submission
+
+  // Retrieve existing user data from local storage
+  let users = JSON.parse(localStorage.getItem('users')) || [];
+
+  // Get the new user details from the input fields
+  const name = nameInput.value;
+  const email = emailInput.value;
+
+  // Create a new user object
+  const newUser = { name, email };
+
+  // Append the new user to the existing user data array
+  users.push(newUser);
+
+  // Store the updated user data array in local storage
+  localStorage.setItem('users', JSON.stringify(users));
+
+  // Clear the input fields
+  nameInput.value = '';
+  emailInput.value = '';
+
+  // Reload the page or update the user list display
+  // based on your implementation
+}
+</script>
